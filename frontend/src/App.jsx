@@ -1,11 +1,17 @@
-import React from 'react'
-
+import { Routes, Route } from 'react-router-dom'
+import SignUp from './pages/SignUp'
+import SignIn from './pages/SignIn'
+import Index from './pages/Index'
+import Navbar from './components/Navbar'
 const App = () => {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <Navbar/>
+      <Routes>
+        <Route path='/' element={<Index />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/signin' element={<SignIn />} />
+      </Routes>
     </>
   )
 }
