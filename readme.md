@@ -143,7 +143,7 @@ so we need to break it down to BCNF (best) or 3 normal form
 
 
 
-
+```
                                 +--------------+
 +----------------+    +--->    |  Manufacturing   |
 |     Domain     |    |         |      Stage      |
@@ -178,3 +178,4 @@ so we need to break it down to BCNF (best) or 3 normal form
       +-----------+      +-------------+
       | Dashboard |      | Data Officer |
       +-----------+      +-------------+
+```
