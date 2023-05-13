@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { SignInApi } from '../utils/ApiLinks';
+import Navbar from '../components/Navbar';
 
 const SignIn = () => {
     const [formData, setFormData] = useState({});
+    const navigate = useNavigate();
     const changeHandler = (event) => {
         const { name, value } = event.target;
         setFormData(prevState => ({
@@ -13,10 +17,19 @@ const SignIn = () => {
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
-        console.log(formData);
+
+        axios.post(SignInApi, formData)
+            .then(response => {
+                localStorage.setItem('Token', response.data.accessToken)
+                navigate('/dashboard')
+            })
+            .catch(error => {
+                alert("Error occured while loggin in")
+            })
     }
     return (
         <section class=" font-poppins">
+            <Navbar />
             <div class="flex items-center justify-center h-screen mx-auto max-w-7xl">
                 <div class="flex-1">
                     <div class="flex flex-wrap ">
@@ -55,7 +68,7 @@ const SignIn = () => {
                                         </span>
                                     </div>
                                     <h2 class="mb-3 text-2xl font-bold text-center text-gray-800 dark:text-gray-400">
-                                        Sign Up for Account</h2>
+                                        Login for Account</h2>
                                     <p class="text-base text-center text-gray-500 mb-7 dark:text-gray-400">
                                         Please fill your credentials</p>
                                     <form onSubmit={onSubmitHandler}>
@@ -64,7 +77,7 @@ const SignIn = () => {
                                                 class="w-full py-4 rounded-lg px-7 dark:text-gray-300 dark:bg-gray-800"
                                                 placeholder="Your email"
                                                 required
-                                                name='userName'
+                                                name='email'
                                                 onChange={changeHandler}
                                             />
                                         </div>

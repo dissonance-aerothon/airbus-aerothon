@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-
+import { SignUpAPI } from '../utils/ApiLinks'
+import axios from 'axios'
+import Navbar from '../components/Navbar';
 const SignUp = () => {
     const [formData, setFormData] = useState({});
     const changeHandler = (event) => {
@@ -13,17 +15,24 @@ const SignUp = () => {
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
-        console.log(formData);
+        axios.post(SignUpAPI, formData)
+            .then(response => {
+                alert("User Successfully Created")
+            })
+            .catch(error => {
+                alert("Error occured while creating the event")
+            })
     }
 
     const memberType = [
-        'Data Officer',
-        'Fabrication',
-        'Sub Assembly',
-        'Assembly',
+        'ADMIN',
+        'FABRICATION',
+        'SUB_ASSEMBLY',
+        'ASSEMBLY',
     ]
     return (
         <section class=" font-poppins">
+            <Navbar />
             <div class="flex items-center justify-center h-screen mx-auto max-w-7xl">
                 <div class="flex-1">
                     <div class="flex flex-wrap ">
@@ -69,15 +78,23 @@ const SignUp = () => {
                                         <div class="mb-4">
                                             <input type="text"
                                                 class="w-full py-4 rounded-lg px-7 dark:text-gray-300 dark:bg-gray-800"
-                                                placeholder="Your email"
+                                                placeholder="Your Name"
                                                 required
-                                                name='userName'
+                                                name='name'
                                                 onChange={changeHandler}
                                             />
                                         </div>
                                         <div class="relative flex items-center mb-4">
+                                            <input type="email"
+                                                class="w-full py-4 rounded-lg px-7 dark:text-gray-300 dark:bg-gray-800"
+                                                placeholder=" email" required
+                                                name="email"
+                                                onChange={changeHandler} />
+
+                                        </div>
+                                        <div class="relative flex items-center mb-4">
                                             <select required
-                                                name="userType"
+                                                name="role"
                                                 onChange={changeHandler} class="w-full py-4 rounded-lg px-7 dark:text-gray-300 dark:bg-gray-800">
                                                 {memberType?.map(itm => (
                                                     <option>
@@ -85,7 +102,6 @@ const SignUp = () => {
                                                     </option>
                                                 ))}
                                             </select>
-
                                         </div>
                                         <div class="relative flex items-center mb-4">
                                             <input type="password"
