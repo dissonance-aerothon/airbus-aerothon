@@ -55,14 +55,14 @@ const CreateData = () => {
                     <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 
 
-                        {/* <div>
+                        <div>
                             <label class="text-gray-700 dark:text-gray-200" >Start Date</label>
                             <input type='date' class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md " name="startDate" onChange={changeHandler} />
-                        </div> */}
-                        {/* <div>
+                        </div>
+                        <div>
                             <label class="text-gray-700 dark:text-gray-200" >End Date</label>
                             <input type='date' class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md " name="endDate" onChange={changeHandler} />
-                        </div> */}
+                        </div>
                     </div>
 
                     <div class="flex justify-end mt-6">
